@@ -1,0 +1,170 @@
+% Kopfzeile beim Kapitelanfang:
+\fancypagestyle{plain}{
+%Kopfzeile links bzw. innen
+\fancyhead[L]{\Large Vorlesung 11 (18.11.2013)}
+%Kopfzeile rechts bzw. außen
+\fancyhead[R]{}}
+%Kopfzeile links bzw. innen
+\fancyhead[L]{\Large Vorlesung 11 (18.11.2013)}
+%Kopfzeile rechts bzw. außen
+\fancyhead[R]{}
+% **************************************************
+\subsection*{Beweis}
+Polynomdivision mit $q(x)=x-\alpha \Ra p=(x-a) \cdot s(x) + r$ mit $r \in \K$, da $\text{grad } r \le 0$\\
+$p(\alpha)=0 \Ra r=0$ \qed\\
+Ist auch $s(\alpha)=0$, so kann man $x-\alpha$ nochmals abspalten, etc.
+
+\section{\texorpdfstring{Definition: $k$-fache Nullstelle von $p$}{Definition: k-fache Nullstelle von p}}\label{6.12}
+Ist $p$ durch $(x-\alpha)^k$ teilbar, also nicht durch $(x-\alpha)^{k+1}$ mit $k \in \N$, so heißt $\alpha$ \underline{$k$-fache Nullstelle von $p$}.\\
+Dann: $p(x)=(x-\alpha)^k \cdot q(x)$, $\text{grad } q = \text{grad } p -k$, $q(\alpha) \neq 0$
+
+\section{Folgerung}\label{6.13}
+\en{
+\item Ist $\grad p = n \in \N_0 \Ra p$ hat höchstens $n$ Nullstellen in $\K$ (mit Vielfachheiten gezählt).
+\item \underline{Identitätssatz für Polynome:} Sei $p(x)=a_n x^n + \ldots + a_1 x + a_0 \in \Pow_\K$.\\
+Angenommen, $p$ hat mindestens $n+1$ Nullstellen $\Ra p=0$ (Nullpolynom), d.h. $a_0 + \ldots + a_n = 0$.
+}
+Der Fundamentalsatz der Algebra (\ref{6.8}) besagt: Jedes komplexe Polynom $p \in \Pow_\K$ mit $\grad p \ge 1$ hat mindestens eine Nullstelle in $\C$.\nl
+Abspalten der Nullstellen-Linearfaktors und Iteration liefert:
+
+\section{Satz}\label{6.14}
+Sei $p \in \Pow_\C$, $\grad p = n \in \N \Ra p$ zerfällt in Linearfaktoren über $\C$, das heißt:
+$$p(x)=c \cdot (x-\alpha_1) \cdot \ldots \cdot (x-\alpha_n), c \in \C \setminus \{0\}, \alpha_1, \ldots, \alpha_n \text{Nullstellen von } p$$
+
+\subsection*{Vorsicht!}
+Ein reelles $p \in \Pow_\R$ zerfällt im Allgemeinen \underline{nicht} in Linearfaktoren über $\R$.
+
+\subsubsection*{Beispiel}
+$x^2+1$ hat keine reellen Nullstellen
+
+\subsubsection*{Aber}
+$p(x)=(x+i)(x-i)$ über $\C$
+
+\newpage
+
+\section{\texorpdfstring{Definition: Folgen in $\C$}{Definition: Folgen in \C}}\label{6.15}
+Sei $(z_n)_{n \in \N} \subseteq \C$ eine Folge komplexer Zahlen.
+\en{
+\item $(z_n)$ heißt \underline{konvergent} mit Grenzwert $z \in \C \Lra \forall \eps > 0 \exists n_0 \in \N: |z_n-z| < \eps \forall n > n_0$
+\item $(z_n)$ heißt \underline{Cauchyfolge} $\Lra \forall \eps > 0 \exists n_0 \in \N: |z_n-z_m| < \eps \forall n,m > n_0$
+\item $(z_n)$ ist \underline{beschränkt} $\Lra \exists M > 0: |z_n| \le M \forall n \in \N$
+}
+
+\subsection*{Schreibweise}
+Falls $(z_n)$ konvergent gegen $z$: $\lim_{n \to \infty} z_n = z, z_n \to z$ ($n \to \infty$)
+
+\subsection*{Beachte!}
+$z_n \to z \Lra \underbrace{|z_n-z|}_{\text{reelle Folge}} \to 0$ ($n \to \infty$)
+
+\subsection*{Beispiel}
+$z \in \C$ mit $|z| < 1 \Ra \lim_{n \to \infty} z^n = 0$\\
+Denn: $\eps > 0 \Ra \exists n_0 \in \N: |z^n|=|z|^n < \eps \forall n > n_0$
+
+\section{Lemma}\label{6.16}
+Sei $(z_n) \subseteq \C$ mit $z_n = x_n + i y_n$ ($x_n, y_n \in \R$)
+\en{
+\item $z_n \to z$ mit $z = x+iy$ ($x,y \in \R$) $\Lra x_n \to x \in \R \wedge y_n \to y \in \R \Lra \RE z_n \to \RE z \wedge \IM z_n \to \IM z$
+\item $(z_n)$ ist Cauchyfolge in $\C \Lra (\RE z_n) \wedge (\IM z_n)$ sind Cauchyfolgen in $\R$
+}
+
+\subsection*{Beweis}
+\en{
+\item \items{
+\item[``$\Ra$''] $|\RE z_n - \RE z| = |\RE (z_n-z)| \le |z_n-z| \to 0$\\
+$\Ra \RE z_n \to \RE z$, ebenso für $\IM z_n$
+\item[``$\La$''] $|z_n-z| - |x_n+i y_n - (x+iy)| \underset{\text{Dreiecksungl.}}{\le} \underbrace{|x_n-x|}_{\to 0} + \underbrace{|i(y_n-y)|}_{\underbrace{=|y_n-y|}_{\to 0}} \Ra |z_n-z| \to 0$
+} \ok
+\item analog \ok
+} \qed \nl
+Wie für reelle Folgen erhält man:
+
+\section{Lemma}\label{6.17}
+Jede Folge in $\C$ hat höchstens einen Grenzwert.\\
+Jede konvergente Folge in $\C$ ist beschränkt.
+
+\section{Rechenregeln}\label{6.18}
+Seien $(a_n),(b_n) \subseteq \C$ Folgen mit $a_n \to a, b_n \to b \Ra$
+\en{
+\item $a_n + b_n \to a+b$
+\item $a_n \cdot b_n \to a \cdot b$
+\item Ist $b \neq 0 \Ra \exists N \in \N: b_n \neq 0 \forall n \ge N$, mit $\bigbrackets{\frac{a_n}{b_n}}_{n \in \N} \to \frac{a}{b}$
+\item $|a_n| \to |a|$
+\item $\overline{a_n} \to \overline{a}$
+}
+
+\subsection*{Beweise}
+\items{
+\item[(1)-(4)] wörtlich wie für reelle Folgen (\ref{5.7})
+\item[(5)] $a_n \to a \Ra \RE a_n \to \RE a \wedge \IM a_n \to \IM a \Ra \overline{a_n} = \RE a_n - i \IM a_n \overset{\text{(1)+(2)}}{\to} \RE a - i \IM a = \overline{a}$
+}
+
+\section{\texorpdfstring{Satz: Cauchy-Kriterium in $\C$}{Satz: Cauchy-Kriterium in \C}}\label{6.19}
+Für eine Folge $(z_n) \subseteq \C$ gilt: $(z_n)$ ist Cauchyfolge $\Lra (z_n)$ konvergiert.\\
+Denn: $z_n = x_n + i y_n$\\
+$(z_n) \text{ Cauchyfolge } \Lra (x_n),(y_n) \text{ Cauchyfolgen } \underset{\text{nach Cauchy-Kr.}}{\Lra} (x_n) \wedge (y_n) \text{ konv. in } \R \Lra (z_n) \text{ konv. in } \C$ \qed
+
+\section{\texorpdfstring{Satz von Bolzano-Weierstraß in $\C$}{Satz von Bolzano-Weierstraß in \C}}\label{6.20}
+Jede beschränkte Folge $(z_n) \subseteq \C$ hat eine konvergente Teilfolge.
+
+\subsection*{Beweis}
+$z_n = x_n + i y_n \Ra |x_n|, |y_n| \le |z_n| \Ra (x_n),(y_n)$ sind beschränkte Folgen in $\R$.\\
+Nach Bolzano-Weierstraß in $\R$ (\ref{5.12}) $\Ra (x_n)$ hat konvergente Teilfolge $x_{n_k} \to x \in \R$.\\
+Nach Bolzano-Weierstraß in $\R$ (\ref{5.12}) $\Ra (y_n)$ hat konv. Teilfolge $y_{n_l} \to y \in \R$\\
+$\Ra \lim_{l \to \infty} z_{n_{k_l}} = x + iy$ \qed
+
+\chapter{Reihen}\label{P7}
+Sei $(a_k)_{k \in \N}$ eine Folge in $\R$ oder $\C$.\\
+Betrachte für jedes $n \in \N$:
+$$s_n := \sum_{k=1}^n a_k \text{ (die } n \text{-te Partialsumme)}$$
+Also: $s_1 = a_1$, $s_2 = a_1 + a_2$, $s_3 = a_1 + a_2 + a_3$, etc.\\
+Die Partialsummen bilden eine Folge $(s_n)_{n \in \N}$.
+
+\subsection*{Beispiele}
+\enk{
+\item $a_k = k \forall k \in \N$\\
+$s_n = \sum_{k=1}^n k = \frac{1}{2} n (n+1)$
+\item $a_k = (-1)^k \forall k \in \N$\\
+$s_n = \sum_{k=1}^n (-1)^k = \left\{\begin{array}{l l}
+-1 & n \text{ ungerade}\\
+0 & n \text{ gerade}
+\end{array} \right.$
+}
+
+\section{Definition: Unendliche Reihen}\label{7.1}
+Sei $(a_k)_{k \in \N} \subseteq \C$ eine Folge.\\
+Die \underline{(unendliche) Reihe} $\sum_{k=1}^\infty a_k$ mit Gliedern $a_k$ ist definiert als die Folge der Partialsummen $(s_n)_{n \in \N}$, $s_n = \sum_{k=1}^n a_k$.\\
+Die Reihe $\sum_{k=1}^\infty a_k$ heißt konvergent $\Lra (s_n)_{n \in \N}$ konvergiert.\nl
+Man schreibt dann:
+$$\sum_{k=1}^\infty a_k = \lim_{n \to \infty} s_n = \lim_{n \to \infty} \sum_{k=1}^n a_k \text{ (\underline{Wert} der Reihe)}$$
+
+\subsection*{Also}
+$\sum_{k=1}^\infty a_k$ bezeichnet sowohl die Partialsummenfolge, als auch deren Grenzwert im Fall der Konvergenz.
+
+\subsection*{Entsprechend}
+Gegeben sei eine Folge $(a_n)_{n > n_0}$, $n_0 \in \Z \rsa$ Reihe $\sum_{k=n_0}^\infty a_k$
+
+\section{Beispiele für Reihen}\label{7.2}
+\en{
+\item \underline{Geometrische Reihe}: $\sum_{k=0}^\infty z^k$, $z \in \C$ ($z^0 := 1$)\\
+$s_n = \sum_{k=0}^n z^k = 1+z+\ldots+z^n$
+\items{
+\item[\underline{1. Fall}:] $z=1 \Ra s_n = n+1 \to \infty$ für $n \to \infty \Ra \sum_{k=1}^\infty 1^k = \infty$, die Reihe divergiert
+\item[\underline{2. Fall}:] $z \neq 1 \Ra s_n = \frac{1-z^{n+1}}{1-z}$ (geom. Summenformel, für $z \in \C$ wie für $z \in \R$)\\
+$|z| < 1 \Ra \lim_{n \to \infty} s_n = \frac{1}{1-z}$\\
+$|z| > 1 \Ra (s_n)_{n \in \N_0}$ divergiert, da $(z^{n+1})_{n \in \N_0}$ unbeschränkt
+}
+\underline{Also}: $\sum_{k=0}^\infty z^k = \frac{1}{1-z}$ für $|z| < 1$\\
+Für $|z| > 1$ divergiert die geometrische Reihe.\\
+Ebenso für $z=-1$: $s_n = \left\{\begin{array}{l l}
+1 & n \text{ gerade}\\
+0 & n \text{ ungerade}
+\end{array}\right\} \Ra (s_n)$ divergiert
+\item $\sum_{k=1}^\infty k$ divergiert, da $s_n = \frac{1}{2} n (n+1)$ unbeschränkt
+\item $\sum_{k=1}^\infty \frac{1}{k(k+1)} =$ ?\\
+Ansatz: $\frac{1}{k(k+1)} \overset{\text{!}}{=} \frac{A}{k} + \frac{B}{k+1}$ mit $A,B \in \R$\\
+$\Lra \frac{1}{k(k+1)} = \frac{A(k+1)+Bk}{k(k+1)} \Lra A=1, B=-A=-1$\\
+\underline{Also}: $\frac{1}{k(k+1)} = \frac{1}{k} - \frac{1}{k+1}$ ``\underline{Partialbruchzerlegung}''\\
+$\Ra s_n=\sum_{k=1}^n \frac{1}{k(k+1)} = \sum_{k=1}^n (\frac{1}{k} - \frac{1}{k+1}) = \underset{\text{``Teleskopsumme''}}{(1-\frac{1}{2}) + (\frac{1}{2} - \frac{1}{3}) + \ldots + (\frac{1}{n} - \frac{1}{n+1})}$\\
+$=1 - \frac{1}{n+1} \to 1$ für $n \to \infty$\\
+$\Ra \sum_{k=1}^\infty \frac{1}{k(k+1)} = 1$
+}

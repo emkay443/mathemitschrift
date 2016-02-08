@@ -1,0 +1,148 @@
+% Kopfzeile beim Kapitelanfang:
+\fancypagestyle{plain}{
+%Kopfzeile links bzw. innen
+\fancyhead[L]{\Large Vorlesung 13 (25.11.2013)}
+%Kopfzeile rechts bzw. außen
+\fancyhead[R]{}}
+%Kopfzeile links bzw. innen
+\fancyhead[L]{\Large Vorlesung 13 (25.11.2013)}
+%Kopfzeile rechts bzw. außen
+\fancyhead[R]{}
+% **************************************************
+\subsection*{Vorsicht}
+In \ref{7.13} (1) genügt \underline{nicht}: $\ldots$ und $\left|\frac{a_{n+1}}{a_n}\right| < 1 \forall n \ge n_0$\\
+\begin{tikzpicture}
+\draw (0,0)--(5,0);
+\foreach \x/\xtext in {1/$0$,3/$q$,4/$1$}
+  \draw(\x,0pt) node{$|$} (\x,-5pt) node[below] {\xtext};
+\end{tikzpicture}\\
+Gegenbeispiel: $\sum_{n=1}^\infty \frac{1}{n}$ divergiert, obwohl $\left|\frac{a_{n+1}}{a_n}\right| = \frac{n}{n+1} < 1 \forall n$\\
+Aber: $\frac{n}{n+1} \to 1 \Ra \nexists q$ wie in (1) gefordert; Konvergenz nicht mit Quotientenkriterium entscheidbar!
+
+\section{Korollar}\label{7.14}
+Angenommen, $R := \lim_{n \to \infty} \left|\frac{a_{n+1}}{a_n}\right| \in [0,\infty]$ existiere.
+\items{
+\item $R < 1 \Ra \sum_{n=1}^\infty a_n$ absolut konvergent
+\item $R > 1 \Ra \sum_{n=1}^\infty a_n$ divergiert
+}
+\begin{tikzpicture}
+\draw (0,0)--(5,0);
+\foreach \x/\xtext in {1/$0$,3/$R$,3.5/$q$,4/$1$}
+  \draw(\x,0pt) node{$|$} (\x,-5pt) node[below] {\xtext};
+\draw(2.5,0pt) node{$|$};
+\end{tikzpicture}
+
+\subsection*{Beispiel}
+\enk{
+\item $\sum_{n=1}^\infty \frac{n^2}{2^n}$ konvergiert, denn: $a_n = \frac{n^2}{2^n} \Ra \left|\frac{a_{n+1}}{a_n}\right| = \frac{(n+1)^2 \cdot 2^n}{2^{n+1} \cdot n^2} = \frac{1}{2} \cdot \bigbrackets{\frac{n+1}{n}}^2 \to \frac{1}{2} (n \to \infty)$
+\item $z \in \C \Ra \sum_{n=1}^\infty n z^n$ konvergiert absolut für $|z| < 1$, denn:\\
+$\left|\frac{a_{n+1}}{a_n}\right| = \left|\frac{(n+1) \cdot z^{n+1}}{nz^n}\right| = \frac{n+1}{n} \cdot |z| \to |z| < 1 \underset{\text{\ref{7.14}}}{\Ra}$ Behauptung
+}
+
+\section*{Frage}
+Was passiert, wenn man die Glieder einer Reihe umordnet?
+
+\subsection*{Beispiel}
+Alternierende harmonische Reihe: $\sum_{k=1}^\infty \frac{(-1)^{k-1}}{k} = 1 - \frac{1}{2} + \frac{1}{3} \mp \ldots =: s$\\
+$s = \overline{1-\frac{1}{2}}+\overline{\frac{1}{3}-\frac{1}{4}}+\overline{\frac{1}{5}-\frac{1}{6}}+\ldots > \frac{1}{2}$\\
+$s' = \overline{1-\frac{1}{2}-\frac{1}{4}}+\overline{\frac{1}{3}-\frac{1}{6}-\frac{1}{8}} + \ldots + \underbrace{\left(\frac{1}{2k-1}-\frac{1}{4k-2}-\frac{1}{4k}\right)}_{=\frac{1}{2}\left(\frac{1}{2k-1}-\frac{1}{2k}\right)}$\\
+$\frac{1}{2}\left[\left(1-\frac{1}{2}\right) + \left(\frac{1}{3}-\frac{1}{4}\right) + \ldots + \left(\frac{1}{2k-1}-\frac{1}{2k}\right) + \ldots \right] = \frac{1}{2} s$ !
+
+\newpage
+
+\section{Umordnungssatz}\label{7.15}
+\emph{Beweis im Skript}\nl
+Sei $\sum_{n=1}^\infty a_n$ \underline{absolut} konvergent und $\sigma: \N \to \N$ bijektiv\\
+Permutation der Indizes $\Ra \sum_{n=1}^\infty a_{\sigma(n)}$ konvergiert absolut, und $\sum_{n=1}^\infty a_{\sigma(n)} = \sum_{n=1}^\infty a_n$\\
+Problem im Beispiel: $\sum_{n=1}^\infty \frac{(-1)^{n-1}}{n}$ \underline{nicht} absolut konvergent!
+
+\section*{Cauchy-Produkt von Reihen}
+Seien $A = \sum_{j=0}^\infty a_j, B = \sum_{k=0}^\infty b_k$ konvergente Reihen in $\C$.\\
+Idee: $AB = (a_0+a_1+a_2+\ldots)\cdot(b_0+b_1+b_2+\ldots) \overset{\text{?}}{=} a_0 b_0 + (a_0 b_1 + a_1 b_0) + (a_2 b_0 + a_1 b_1 + a_0 b_2) + \ldots = \sum_{n=0}^\infty c_n$ mit $c_n = \sum_{j=0}^n a_j b_{n-j}$\nl
+Stets richtig, falls $A, B$ endliche Summen sind.\\
+Aber für unendliche Reihen ist das \underline{nicht o.E.} richtig!
+
+\section{Satz: Cauchy-Produkt}\label{7.16}
+Seien $\sum_{j=0}^\infty a_j, \sum_{k=0}^\infty b_k$ \underline{absolut konvergent} ($a_j, b_k \in \C$)\\
+Setze $c_n = \sum_{j=0}^n a_j b_{n-j} = \sum_{(j,k):j+k=n} a_j b_k (n \in \N_0) \Ra \sum_{n=0}^\infty c_n$ konvergiert absolut, und
+$$\left|\left|\left(\sum_{j=0}^\infty a_j\right) \cdot \left(\sum_{k=0}^\infty b_k\right) = \sum_{n=0}^\infty c_n = \sum_{n=0}^\infty \left(\sum_{j=0}^n a_j b_{n-j}\right)\right|\right|$$
+\underline{Cauchy-Produkt}\nl
+\begin{tikzpicture}
+\draw[->] (-0.5,0)--(5,0);
+\draw[->] (0,-0.5)--(0,5);
+\draw (5,-0.3) node{$j$};
+\draw (-0.3,5) node{$k$};
+\draw (-0.3,-0.3) node{$0$};
+\foreach \x/\xtext in {1/$1$,2/$2$,4/$n$}
+  \draw(\x,0pt) node{$|$} (\x,-5pt) node[below] {\xtext} (0pt,\x) node{$-$} (-8pt,\x) node{\xtext};
+\foreach \x in {1,2,4}
+  \draw (\x,0)--(0,\x);
+\draw (2.8,2.3) node{$j+k=n$};
+\end{tikzpicture}
+Summ. indizes für $a_j b_k$
+
+\subsection*{Beweis}
+$A:=\sum a_j, B:=\sum b_k, S_1 := \sum_0^\infty |a_j| < \infty, S_2 := \sum_0^\infty |b_k| < \infty$
+\en{
+\item $\sum_{n=0}^N |c_n| \le \sum_{n=0}^N \sum_{j=0}^n |a_j b_{n-j}| = \sum_{n=0}^N \sum_{j+k=n} |a_j| |b_k| \le \sum_{j=0}^N \sum_{k=0}^N |a_j| |b_k| \overset{\text{Distributivges.}}{=} \left(\sum_{j=0}^N |a_j|\right) \cdot \left(\sum_{k=0}^N |b_k|\right) \le S_1 \cdot S_2 < \infty \Ra \sum_{n=0}^\infty |c_n|$ konvergiert.
+\item Grenzwert von $\sum_{n=0}^\infty c_n$: Sei $\eps > 0 \Ra \exists n_0 \in \N: \forall N \ge n_0:$\\
+$\left|\left(\sum_{j=0}^N a_j\right) \cdot \left(\sum_{k=0}^N b_k\right) - AB\right| < \frac{\eps}{3}$ \underline{und} $\sum_{j > N} |a_j| < \frac{\eps}{3M}, \sum_{k > N} |b_k| < \frac{\eps}{3M}$ mit $M = S_1 + S_2$\\
+Dann: $\left|\sum_{n=0}^{2N} c_n - AB\right| = \left|\sum_{n=0}^{2N} \left(\sum_{j+k=n} a_j b_k\right) - AB \right| \le \left|\underbrace{\overbrace{\left(\sum_{j=0}^N a_j\right) \cdot \left(\sum_{k=0}^N b_k\right)}^{\text{schraffierter Bereich}} - AB}_{=: r_1 < \frac{\eps}{3}}\right| + \underbrace{\sum_{(j,k) \in I_1 \cup I_2} |a_j| |b_k|}_{=: r_2}$\\
+$r_2 \le \underbrace{\left(\sum_{j=N+1}^{2N} |a_j|\right)}_{< \frac{\eps}{3M}} \cdot \underset{(|b_k| \le S_2)}{S_2} + S_1 \cdot \underbrace{\left(\sum_{k=N+1}^{2N} |b_k|\right)}_{< \frac{\eps}{3M}} \underset{S_i \le M} M\left(\frac{\eps}{3M}+\frac{\eps}{3M}\right) = \frac{2\eps}{3} \Ra$\\
+$\left|\sum_{n=0}^{2N} c_n - AB \right| < \eps \forall N \ge n_0 \Ra \sum_{n=0}^\infty c_n = AB$ \qed\nl
+\begin{tikzpicture}
+\draw[->] (-0.5,0)--(5,0);
+\draw[->] (0,-0.5)--(0,5);
+\draw (5,-0.3) node{$j$};
+\draw (-0.3,5) node{$k$};
+\draw (-0.3,-0.3) node{$0$};
+\foreach \x/\xtext in {2/$N$,4/$2N$}
+  \draw(\x,0pt) node{$|$} (\x,-5pt) node[below] {\xtext} (0pt,\x) node{$-$} (-9pt,\x) node{\xtext};
+\draw (4,0)--(0,4);
+\draw [pattern=north east lines] (0,0) rectangle (2,2);
+\draw (2.3,1) node{$I_1$};
+\draw (1,2.3) node{$I_2$};
+\end{tikzpicture}
+}
+
+\subsection*{Beispiel}
+Im Skript (nicht zwingend notwendig)
+% TODO: Eventuell noch abtexen
+
+\chapter{Reihen: Anwendungen und Beispiele}\label{P8}
+\section{Definition: Dezimalentwicklung reeller Zahlen}\label{8.1}
+Ein Dezimalbruch ist eine Reihe der Form
+$$\text{(*) } \pm \sum_{k=-N}^\infty a_k 10^{-k} = \pm a_{-N} \ldots a_0, a_1 a_2 \ldots \left[10^{-k}=\left(\frac{1}{10}\right)^k\right]$$
+mit $N \in \N_0, a_k \in \{0,\ldots,9\}$ Ziffern
+
+\subsection*{Beispiel}
+$417,29 = 4 \cdot 10^2 + 1 \cdot 10^1 + 7 \cdot 10^0 + 2 \cdot 10^{-1} + 9 \cdot 10^{-2} (N=2)$\\
+$0,\overline{3} := 0,333\ldots := \sum_{k=1}^\infty 3 \cdot 10^{-k} = \frac{3}{10} \cdot \sum_{k=0}^\infty \left(\frac{1}{10}\right)^k = \frac{3}{10} \cdot \frac{1}{1-\frac{1}{10}} = \frac{3}{10} \cdot \frac{10}{9} = \frac{1}{3}$\\
+$0,\overline{9} \underset{\text{analog}}{=} \frac{9}{10}\cdot\frac{10}{9}=1$
+
+\newpage
+
+\section{Satz: Zusammenhang reelle Zahl / Dezimalbruch}\label{8.2}
+Jeder Dezimalbruch ist eine konvergente Reihe und stellt daher eine reelle Zahl dar.\\
+Umgekehrt lässt sich jedes $x \in \R$ als Dezimalbruch darstellen.\\
+Die Dezimaldarstellung ist nicht notwendig eindeutig! Beispiel: $0,\overline{9} = 1, 0,6\overline{9} = 0,7$
+
+\subsection*{Beweis}
+\en{
+\item Konvergenz der Reihe (*): $9 \cdot \sum_{k=-N}^\infty \left(\frac{1}{10}\right)^k$ ist konvergente Majorante
+\item Sei $x \in \R$ o.E. $x \ge 0$.
+\items{
+\item[1. Fall:] $x \in [0,1)$\\
+Gesucht: Darstellung $x=0,a_1 a_2 \ldots$\\
+Konstruiere $a_1 , a_2 , \ldots$ rekursiv so, dass
+$$\text{(}\square\text{) } 0, a_1 \ldots a_n \le x < 0, a_1 \ldots a_n + \frac{1}{10^n} \forall n \in \N$$
+Setze dazu: $a_1 := \lfloor 10x \rfloor, a_1 \le 10x < a_1 + 1$\\
+$a_1 \in \{0,1,\ldots,9\}$, da $0 \le x < 1$ und $0,a_1 \le x < 0, a_1 + \frac{1}{10}$\\
+Seien nun $a_1, \ldots, a_{n-1}$ bereits konstruiert ($n \ge 2$)\\
+$a_n := \lfloor 10^n \underbrace{(x-0,a_1 \ldots a_{n-1})}_{=y_n} \rfloor \Ra a_n \le 10^n y_n < a_n + 1$\\
+($\square$) $\Ra 0 \le y_n < \frac{1}{10^{n-1}} \Ra a_n \in \{0,\ldots,9\}$ und $\frac{a_n}{10^n} \le y_n < \frac{a_n}{10^n} + \frac{1}{10^n}$\\
+$\Ra 0 \le x-0, a_1 \ldots a_n = y_n - \frac{a_n}{10^n} < \frac{1}{10^n} \Ra $($\square$) für $n$\\
+$\lim_{n \to \infty} \frac{1}{10^n} = 0 \Ra x = \sum_{k=0}^\infty a_k 10^{-k}$
+}
+\item $x \ge 1 \Ra \exists N \in \N: \frac{x}{10^N} \in [0,1) + (2)$
+}

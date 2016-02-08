@@ -1,0 +1,166 @@
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+
+% Klickbare Verknüpfungen
+\usepackage[hidelinks]{hyperref}
+
+% Hübsche Header
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% Zusätzliche Symbole (u.a. Widerspruchsblitz)
+\usepackage{marvosym}
+
+% Grafiken importieren
+\usepackage{graphicx}
+
+% Farben
+\usepackage{xcolor}
+
+% Zeichenpaket (Graphen, Zahlenstrahl, etc.)
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{lindenmayersystems}
+\usetikzlibrary{patterns}
+\newcommand{\streiche}[1]{%
+    \tikz[baseline=(tocancel.base)]{
+        \node[inner sep=0pt,outer sep=0pt] (tocancel) {#1};
+        \draw[red] (tocancel.south west) -- (tocancel.north east);
+    }%
+}%
+
+\newlength{\hatchspread}
+\newlength{\hatchthickness}
+\newlength{\hatchshift}
+\newcommand{\hatchcolor}{}
+% declaring the keys in tikz
+\tikzset{hatchspread/.code={\setlength{\hatchspread}{#1}},
+         hatchthickness/.code={\setlength{\hatchthickness}{#1}},
+         hatchshift/.code={\setlength{\hatchshift}{#1}},% must be >= 0
+         hatchcolor/.code={\renewcommand{\hatchcolor}{#1}}}
+% setting the default values
+\tikzset{hatchspread=3pt,
+         hatchthickness=0.4pt,
+         hatchshift=0pt,% must be >= 0
+         hatchcolor=black}
+% declaring the pattern
+\pgfdeclarepatternformonly[\hatchspread,\hatchthickness,\hatchshift,\hatchcolor]% variables
+   {custom north west lines}% name
+   {\pgfqpoint{\dimexpr-2\hatchthickness}{\dimexpr-2\hatchthickness}}% lower left corner
+   {\pgfqpoint{\dimexpr\hatchspread+2\hatchthickness}{\dimexpr\hatchspread+2\hatchthickness}}% upper right corner
+   {\pgfqpoint{\dimexpr\hatchspread}{\dimexpr\hatchspread}}% tile size
+   {% shape description
+    \pgfsetlinewidth{\hatchthickness}
+    \pgfpathmoveto{\pgfqpoint{0pt}{\dimexpr\hatchspread+\hatchshift}}
+    \pgfpathlineto{\pgfqpoint{\dimexpr\hatchspread+0.15pt+\hatchshift}{-0.15pt}}
+    \ifdim \hatchshift > 0pt
+      \pgfpathmoveto{\pgfqpoint{0pt}{\hatchshift}}
+      \pgfpathlineto{\pgfqpoint{\dimexpr0.15pt+\hatchshift}{-0.15pt}}
+    \fi
+    \pgfsetstrokecolor{\hatchcolor}
+%    \pgfsetdash{{1pt}{1pt}}{0pt}% dashing cannot work correctly in all situation this way
+    \pgfusepath{stroke}
+   }
+
+
+% Linie unten
+\renewcommand{\footrulewidth}{0.5pt}
+% Kopfzeile Linie oben
+\renewcommand{\headrulewidth}{0.5pt}
+% Fußzeile
+\fancyfoot[C]{- \thepage\ -}
+% Kopfzeilen fürs Inhaltsverzeichnis:
+% Kopfzeile links bzw. innen
+\fancyhead[L]{\Large Inhaltsverzeichnis}
+% Kopfzeile rechts bzw. außen
+\fancyhead[R]{\Large{}}
+% Kopfzeile beim Kapitelanfang:
+\fancypagestyle{plain}{
+	% Kopfzeilen fürs Inhaltsverzeichnis:
+	% Kopfzeile links bzw. innen
+	\fancyhead[L]{\Large Inhaltsverzeichnis}
+	% Kopfzeile rechts bzw. außen
+	\fancyhead[R]{\Large{}}
+}
+
+\usepackage{tocloft}
+\renewcommand\cftsecnumwidth{1.2cm}
+\renewcommand\cftchapnumwidth{0.75cm}
+
+\setcounter{chapter}{-1} %Überschriftennummer neu setzen (zahl der bereits vergebenen Nummern)
+\renewcommand{\thechapter}{§\arabic{chapter}}
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+\setcounter{tocdepth}{2}
+
+
+% Mathegedöns
+\usepackage{amsmath}%Mathebiblothek
+\usepackage{amssymb} %Sonderzeichen (z.B. \checkmark)
+\usepackage{enumitem}%Aufzählunden formatieren
+\usepackage{polynom}
+
+% Kurzbefehle
+
+%Zahlenmengen start
+\newcommand{\C}{\mathbb{C}}%komplexe Zahlen
+\newcommand{\R}{\mathbb{R}}%reelle Zahlen
+\newcommand{\Q}{\mathbb{Q}}%rationale Zahlen
+\newcommand{\Z}{\mathbb{Z}}%ganze Zahlen
+\newcommand{\N}{\mathbb{N}}%Natürliche Zahlen
+\newcommand{\Lsg}{\mathbb{L}}%Lösungsmenge 
+\newcommand{\F}{\mathbb{F}}%Körper (z.B. F_2)
+\newcommand{\K}{\mathbb{K}}%Körper (z.B. K_2)
+%Zahlenmengen end
+
+\newcommand{\A}{\mathcal{A}} % Geschwungenes A
+\newcommand{\E}{\mathcal{E}} % Geschwungenes E/großes Epsilon
+\newcommand{\Pow}{\mathcal{P}} % Potenzmenge (engl. Power Set)
+\newcommand{\eps}{\varepsilon}
+\newcommand{\ok}{\hfill{\checkmark}}
+\newcommand{\qed}{\hfill{q.e.d.}}
+\newcommand{\wspruch}{\Lightning}
+\newcommand{\nl}{\\[8pt]} %für Absätze
+\newcommand{\es}{\emptyset}
+\newcommand{\rem}[1]{} %Blockweise kommentieren ;)
+%Aufzählung Zahlen
+\newcommand{\en}[1]{\begin{enumerate}[label=(\arabic*)] #1 \end{enumerate}}
+%Aufzählung Zahlen (ohne Klammer, mit Punkt)
+\newcommand{\enk}[1]{\begin{enumerate}[label=\arabic*.] #1 \end{enumerate}}
+%Aufzählung Buchstaben
+\newcommand{\ena}[1]{\begin{enumerate}[label=(\alph*)] #1 \end{enumerate}}
+%Aufzählung Römische Buchstaben
+\newcommand{\enr}[1]{\begin{enumerate}[label=(\roman*)] #1 \end{enumerate}}
+%Aufzählung Römische Großbuchstaben
+\newcommand{\enR}[1]{\begin{enumerate}[label=(\Roman*)] #1 \end{enumerate}}
+%Aufzählung
+\newcommand{\items}[1]{\begin{itemize} #1 \end{itemize}}
+
+% Große Summe, Produkt, Binomialkoeffizient, ...
+\newcommand{\bigsum}{\displaystyle\sum}
+\newcommand{\bigprod}{\displaystyle\prod}
+\newcommand{\bigbin}{\displaystyle\binom}
+\newcommand{\biglim}{\displaystyle\lim}
+\newcommand{\bigfrac}{\displaystyle\frac}
+
+% Große Klammern
+\newcommand{\bigbrackets}[1]{\left( #1 \right)}
+\newcommand{\bigbraces}[1]{\left\{ #1 \right\}}
+% Auskommentieren, um große Schreibweise zu forcieren
+\everymath{\displaystyle}
+
+% "Nach Induktionsvoraussetzung" Gleich
+\newcommand{\iv}{\underset{I.V.}{=}}
+
+% Pfeile
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\rsa}{\rightsquigarrow}
+\newcommand{\mto}{\mapsto}
+
+% Grad von ... (Polynome)
+\newcommand{\grad}{\text{grad }}
+
+% Realteil, Imaginärteil
+\newcommand{\RE}{\text{Re }}
+\newcommand{\IM}{\text{Im }}

@@ -1,0 +1,107 @@
+% Kopfzeile beim Kapitelanfang:
+\fancypagestyle{plain}{
+%Kopfzeile links bzw. innen
+\fancyhead[L]{\Large Vorlesung 29 (03.02.2013)}
+%Kopfzeile rechts bzw. außen
+\fancyhead[R]{}}
+%Kopfzeile links bzw. innen
+\fancyhead[L]{\Large Vorlesung 29 (03.02.2014)}
+%Kopfzeile rechts bzw. außen
+\fancyhead[R]{}
+% **************************************************
+\section{Korollar}\label{15.2}
+$f \in C^{n+1}(I)$ mit $f^{(n+1)} \equiv 0$ auf $I$\\
+$\Ra f$ ist Polynom vom Grad $\le n$, nämlich $f(x)=T_n f(x; a)$
+
+\section{Satz: Lagrange-Form des Restglieds}\label{15.3}
+Sei $f \in C^{n+1}(I)$, $a \in I \Ra \forall x \in I \exists \xi_x$ zwischen $a$ und $x$:
+$$R_{n+1}(x) = \frac{f^{(n+1)}(\xi_x)}{(n+1)!} (x-a)^{n+1}$$
+Spezialfall $n=0$: $R_1(x)=f(x)-f(a)=f'(\xi_x) \cdot (x-a)$ (MWS der Differentialrechnung, \ref{11.12})
+
+\subsection*{Beweis}
+$R_{n+1}(x) = \frac{1}{n!} \int_a^x \underbrace{(x-t)^n}_{p(t)} f^{(n+1)}(t) dt$ hat einheitliches Vorzeichen zwischen $a$ und $x$\\
+($x$ ist einzige Nullstelle)\nl
+MWS der Integralrechnung (\ref{14.8}) $\Ra R_{n+1}(x) = \frac{1}{n!} f^{(n+1)}(\xi_x) \cdot \underbrace{\int_a^x (x-t)^n dt}_{\frac{1}{n+1}(x-a)^{n+1}}$ ($\xi_x$: geeignete Zwischenstelle zwischen $a$ und $x$)
+
+\subsection*{Anwendung}
+Wichtige Anwendung der Lagrange-Form: Abschätzung von $|R_{n+1}(x)|$
+
+\section{Beispiel}\label{15.4}
+Gesucht: Näherung für $\sqrt{x}$, $x=1+\delta$, $\delta > 0$ klein\\
+Bekannt: $\sqrt{1}=1$\nl
+$f(x) := \sqrt{x}$, Taylorentwicklung um $a=1$\\
+$n$-te Näherung: $\sqrt{x} = T_n f(x; 1) + R_{n+1}(x)$\\
+$f'(x) = \frac{1}{2} \cdot \frac{1}{\sqrt{x}}$, $f''(x) = -\frac{1}{4} \cdot \frac{1}{x^{\frac{3}{2}}}$, $f''(x) = \frac{3}{8} \cdot \frac{1}{x^{\frac{5}{2}}}$, $\ldots$\nl
+$|R_n(x)| \underset{\text{Lagrange}}{\le} \frac{|x-1|^n}{n!} \max_{[1,x]} |f^{(n)}| \underset{x>1}{=} \frac{\delta^n}{n!} \cdot |f^{(n)}(1)|$\nl
+$n=0$: $\sqrt{x} = f(1)+R_1(x) = 1+R_1(x)$, $|R_1(x)| \le \frac{\delta}{2}$\\
+$n=1$: $\sqrt{x} = 1+f'(1) \cdot \delta + R_2(x) = 1+\frac{\delta}{2} + R_2(x)$, $|R_2(x)| \le \frac{\delta^2}{2} \cdot \frac{1}{4} = \frac{\delta^2}{8}$\\
+$n=2$: $\sqrt{x} = \underbrace{1+\frac{\delta}{2}-\frac{1}{8} \delta^2}_{T_2 f(x; 1)} + R_3(x)$, $|R_3(x) \le \frac{\delta^3}{16}$
+
+\newpage
+
+\section*{Qualitative Betrachtung}
+\underline{Vorbemerkung}: Landau-Symbol "`$o$"'\nl
+Seien $f,g: D \to \R$ Funktionen, $a \in \R$\\
+Man schreibt: $f(x)=o(g(x))$ für $x \to a$, falls $\lim_{x \to a} \frac{f(x)}{g(x)} = 0$\\
+(Analog für $x \to \pm \infty$, falls $D$ nach oben/unten unbeschränkt)
+
+\subsection*{Beispiel}
+$|x|^{\frac{3}{2}} = o(x)$ für $x \to 0$; $|x|^{\frac{3}{2}} = o(x^2)$ für $x \to \infty$
+
+\section{Qualitative Taylorformel}\label{15.5}
+Sei $f \in C^n(I)$ (nicht notwendig $C^{n+1}$), $a \in I$\\
+$\Ra$ \fbox{$f(x) = T_n f(x; a) + o((x-a)^n)$} für $x \to a$
+
+\subsection*{Beweis}
+$r(x) := \frac{f(x)-T_n f(x)}{(x-a)^n}$\\
+Zu zeigen: $\lim_{x \to a} r(x) = 0$\\
+$T_n f(x) = T_{n-1} f(x) + \frac{f^{(n)}(a)}{n!} \cdot (x-a)^n$\\
+$r(x) = \underbrace{\frac{f(x) - T_{n-1} f(x)}{(x-a)^n}}_{\text{Lagr.}=\frac{1}{n!} f^{(n)}(\xi)} - \frac{f^{(n)}(a)}{n!} = \frac{1}{n!}(f^{(n)}(\xi) - f^{(n)}(a))$\\
+$x \to a \Ra \xi \to a \underset{f^{(n)} \text{ stetig}}{\Ra} f^{(n)}(\xi) \to f^{(n)}(a) \Ra$ Behauptung \qed
+
+
+\subsection*{Beispiel}
+$f(x)=(1+x)^s$ mit $s \in \R, x > -1$\nl
+$a := 0$\\
+$f(0)=1$; $f'(x) = s(1+x)^{s-1}$; $f'(0) = s \Ra (1+x)^s = 1+sx+o(x)$ für $x \to 0$\\
+Das heißt: $\lim_{x \to 0} \frac{(1+x)^s-1-x}{x} = 0$\nl
+$s = \frac{1}{2}: \sqrt{1+x} = 1+\frac{1}{2}x+o(x)$ ($x \to 0$)
+
+\section{Definition: Taylorreihen}\label{15.6}
+$C^\infty(I) := \{f: I \to \R, f \text{ beliebig oft differenzierbar auf } I\}$\nl
+Sei $f \in C^\infty(I)$ \underline{Taylorreihe} von $f$ um $a \in I$.
+$$T f(x;a) = \sum_{n=0}^\infty \frac{f^{(n)}(a)}{n!} (x-a)^n$$
+Dies ist eine Potenzreihe um $a$ (Entwicklungspunkt)
+
+\newpage
+
+\subsection*{Fakten}
+\enk{
+\item $T f(x; a)$ konvergiert für festes $x \Lra \lim_{n \to \infty} T_n f(x; a)$ existiert
+\item Falls $T f(x; a)$ konvergiert, muss \underline{nicht notwendig} $T f(x; a)=f(x)$ sein!\\
+Das heißt, es kann sein, dass $f \in C^\infty(I)$ im Punkt $a \in I$ nicht durch seine Taylorreihe dargestellt wird.
+}
+
+\subsection*{Beispiele}
+$$f(x) = \left\{\begin{array}{l l} e^{-\frac{1}{x}}, & x > 0 \\ 0, & x \le 0 \end{array}\right.$$
+\begin{tikzpicture}
+\draw[->] (-3,0)--(3,0);
+\draw[->] (0,-0.5)--(0,1.5);
+\draw[color=blue,domain=0.1:3] plot (\x, {exp(-1/\x)});
+\draw[color=blue,domain=-3:0.1] plot (\x, {0});
+\end{tikzpicture}\nl
+Es gilt: $f \in C^\infty(\R)$ (kritisch nur $x=0$) mit $f^{(n)}(0)=0 \forall n \in \N_0$\\
+$\Ra Tf(x;0) = \sum_{n=0}^\infty \frac{f^{(n)}(0)}{n!} x^n = 0 \forall x \in \R$\nl
+Daher: $Tf(x;0) \neq f(x) \forall x>0$!\nl
+Aber es gilt:
+
+\section{Satz}\label{15.7}
+Sei $f$ eine Funktion mit Potenzreihendarstellung $f(x)=\sum_{n=0}^\infty c_n(x-a)^n$ ($a, c_n \in \R$)\nl
+Der Konvergenzradius sei $R > 0 \Ra c_n = \frac{1}{n!} f^{(n)}(a) \forall n \in \N_0$\\
+Also: $f(x) = Tf(x;a) \forall x \in (a-R,a+R)$\nl
+Man sagt: $f$ besitzt auf $(a-R,a+R)$ eine Taylorentwicklung um $a$ (Beachte: Taylorentwicklung = Potenzreihenentwicklung)
+
+\subsection*{Beweis}
+Satz \ref{13.14} $\Ra f \in C^\infty((a-R,a+R))$ und darf gliedweise differenziert werden\nl
+$f^{(n)}(x) = \sum_{k=0}^\infty c_k \frac{d^n}{dx^n}(x-a)^k = \sum_{k=n}^\infty c_k \cdot k(k-1) \cdot \ldots \cdot (k-n+1) \cdot (x-a)^{k-n}$\\
+$\Ra f^{(n)}(a) \underset{(k=n)}{=} c_n \cdot n!$ \qed

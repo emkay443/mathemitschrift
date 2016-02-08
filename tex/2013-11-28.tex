@@ -1,0 +1,165 @@
+% Kopfzeile beim Kapitelanfang:
+\fancypagestyle{plain}{
+%Kopfzeile links bzw. innen
+\fancyhead[L]{\Large Vorlesung 14 (28.11.2013)}
+%Kopfzeile rechts bzw. außen
+\fancyhead[R]{}}
+%Kopfzeile links bzw. innen
+\fancyhead[L]{\Large Vorlesung 14 (28.11.2013)}
+%Kopfzeile rechts bzw. außen
+\fancyhead[R]{}
+% **************************************************
+\subsection*{Zusatz}
+Die Dezimaldarstellung von $x$ ist eindeutig, wenn man ausschließt, dass $a_k=9$ für fast alle $k$ ist, also $x=\ldots,\ldots \overline{9}$\nl
+Hier ohne Beweis.
+
+\subsection*{Bemerkung}
+Statt der Basis $10$ kann man eine beliebige Zahle $b \in \N$, $b \ge 2$ als Basis wählen.\\
+Analog zu Satz \ref{8.2} gilt: Jedes $x \in \R$ hat eine so genannte \underline{$b$-adische Entwicklung}
+$$x = \pm \sum_{k=-N}^\infty a_k b^{-k} \text{ mit } N \in \N_0, a_k \in \{0, \ldots, b-1\}$$
+$b = 2$: Dualsystem, $a_k \in \{0,1\} \to$ Binärdarstellung von $x$\\
+$b = 8$: Oktalsystem (vor 1980 in der Informatik)
+
+\section{Definition: Abzählbare Mengen, Mächtigkeit}\label{8.3}
+\en{
+\item Zwei Mengen $X, Y$ heißen \underline{gleichmächtig}, kurz $X \sim Y$, $\Lra \exists$ bijektive Abbildung $f: X \to Y$
+\item $X$ ist abzählbar unendlich $\Lra X \sim \N$
+\item $X$ ist abzählbar $\Lra X$ ist endlich (auch $X=\emptyset$ möglich) oder abzählbar unendlich
+\item $X$ ist überabzählbar $\Lra X$ ist nicht abzählbar
+}
+Abzählbar unendlich sind zum Beispiel:
+\items{
+\item $\N$
+\item $\N_0, f: \N \to \N_0, n \to n-1$ ist bijektiv
+\item $\Z,$ bijektives $f: \N \to \Z: \begin{array}{l l l l l l l} 1 & 2 & 3 & 4 & 5 & 6 & \ldots \\ 0 & 1 & -1 & 2 & -2 & 3 & \ldots \end{array}$
+}
+Achtung: $\N \subsetneq \N_0 \subsetneq \Z$, aber alle drei Mengen sind gleichmächtig!
+
+\newpage
+
+\section{Lemma}\label{8.4}
+$X \neq \emptyset$ ist abzählbar $\Lra \exists$ surjektives $f: \N \to X$, das heißt, mit $x_i = f(i)$ gilt: $X = \{x_1, x_2, x_3, \ldots\}$
+
+\subsection*{Beweis}
+\items{
+\item[``$\Ra$''] o.E. $X=\{x_1, \ldots, x_n\}$ endlich\\
+Definiere $f: \N \to X: \begin{array}{l l} f(i) := x_1 & \text{für } 1 \le i \le n \\ f(i) := x_n & \text{für } i > n \end{array}$, $f$ ist surjektiv
+\item[``$\La$''] Sei $f: \N \to X$ surjektiv, o.E. $X$ unendlich\\
+$X = \{f(1), f(2), f(3), \ldots\}$, $f(i)=f(j)$ für $i \neq j$ ist möglich\\
+Konstruiere daraus neue Abzählung $X=\{x_1, x_2, x_3, \ldots\}$, bei der bereits gezählte Elemente übersprungen werden, das heißt $\underbrace{f(1)}_{=x_1}=\streiche{f(2)}=\streiche{f(3)}, \underbrace{f(4)}_{=x_2}=\streiche{f(5)} \ldots$\\
+$x_1 := f(1), x_2 := f(4), 4 :=$ kleinster Index mit $f(4) \neq x_1$\\
+$x_2 := f(i_2), i_2 :=$ kleinster Index mit $f(i_2) \notin \{x_1, x_2\}$ usw...\\
+Liefert Bijektion $\N \to X, i \mto x_i$\\
+Konsequenz: $X$ ist abzählbar, $Y \subseteq X \Ra Y$ ist abzählbar (anschaulich klar).
+}
+
+\section{Satz}\label{8.5}
+Seien $X_n$ ($n \in \N$) abzählbare Mengen $\Ra X = \bigcup_{n \in \N} X_n$ ist abzählbar.
+
+\subsection*{Beweis}
+o.E. $X_n \neq \emptyset \forall n \in \N$\\
+Sei $X_1 = \{x_{11}, x_{12}, x_{13}, \ldots \}$\\
+$X_2 = \{x_{21}, x_{22}, x_{23}, \ldots \}$\\
+etc...\nl
+$\begin{array}{l l l l l l l}
+\overset{1}{x_{11}} & \rightarrow & \overset{2}{x_{12}} & \ & \overset{6}{x_{13}} & \rightarrow & \overset{7}{x_{14}} \\
+\ & \swarrow & \ & \nearrow & \ & \ & \ \\
+\overset{3}{x_{21}} & \ & \overset{5}{x_{22}} & \ & \ldots & \ & \ldots \\
+\downarrow & \nearrow & \ & \ & \ & \ & \ \\
+\overset{4}{x_{31}} & \ & \ldots & \ & \ldots & \ & \ldots
+\end{array}$\nl
+Abzählung von $X$: 
+
+\section{Korollar}\label{8.6}
+$\Q$ ist abzählbar.
+
+\subsection*{Beweis}
+$\Q = \bigcup_{n \in \N} \underbrace{\left\{\frac{k}{n}: k \in \Z\right\}}_{\text{abzählbar}}$ 
+
+\newpage
+
+\section{Satz: Überabzählbarkeit der reellen Zahlen}\label{8.7}
+$\R$ ist überabzählbar.
+
+\phantomsection
+\addcontentsline{toc}{subsection}{Beweis (Cantorsches Diagonalverfahren)}
+\subsection*{Beweis (Cantorsches Diagonalverfahren)}
+Wir zeigen, dass bereits $(0,1)$ überabzählbar ist.\\
+Angenommen, $(0,1)$ sei abzählbar: $(0,1) = \{x_1, x_2, x_3, \ldots\}$\\
+$x_n$ in Dezimaldarstellung (ohne $\overline{9}$)\\
+$x_1 = 0, a_{11} a_{12} a_{13} \ldots$\\
+$x_2 = 0, a_{21} a_{22} a_{23} \ldots$\\
+$x_3 = 0, a_{31} a_{32} a_{33} \ldots$\\
+$\vdots$\nl
+Definiere Dezimalzahl $z \in (0,1)$ wie folgt:\\
+$x_1 = 0, {\color{red} \mathbf{a_{11}}} a_{12} a_{13} \ldots$\\
+$x_2 = 0, a_{21} {\color{red} \mathbf{a_{22}}} a_{23} \ldots$\\
+$x_3 = 0, a_{31} a_{32} {\color{red} \mathbf{a_{33}}} \ldots$\\
+$\vdots$\\
+$z := 0,z_1 z_2 z_3$ mit $z_n := \left\{ \begin{array}{l l} 5 & \text{falls } a_{nn} \neq 5 \\ 4 & \text{falls } a_{nn} = 5 \end{array} \right.$\\
+$\Ra z \in (0,1): z_n \neq a_{nn} \Ra \underset{\text{Eindeutigkeit der Darstellung}}{\Ra} z \neq x_n \forall n$
+
+\subsection*{Beispiel}
+Jedes Programm ist eine endliche Folge von Symbolen aus einer endlichen Menge $A$ (Alphabet).\\
+Nach Satz \ref{8.5} $\Ra \{$ Programme (über $A$)$\}$ ist abzählbar\\
+$X = \{f: \N \to \{0,1\}\}$ Menge der $0,1$-Folgen\\
+$f \in X$ ist berechenbar $\Lra \exists$ Programm, das zu einer Eingabe $n$ die Ausgabe $f(n)$ liefert.\\
+$\Ra \{f \in X: f \text{ berechenbar}\}$ ist abzählbar\nl
+Aber: $X$ ist überabzählbar! (Übung)\\
+Also: $\exists f: \N \to \{0,1\}$, die nicht berechenbar sind!
+
+\section{Satz: Die Exponentialfunktion}\label{8.8}
+Für jedes $z \in \C$ ist die \underline{Exponentialfunktion}\\
+\fbox{$exp(z) := \sum_{n=0}^\infty \frac{z^n}{n!}$} absolut konvergent.
+
+\subsection*{Beweis}
+$z = 0 \Ra $Konvergenz klar; $exp(0)=1$\\
+$z \neq 0$: Quotientenkriterium: $a_n = \frac{z^n}{n!} \neq 0$\\
+$\left|\frac{a_{n+1}}{a_n}\right| = \left|\frac{z^{n+1}}{(n+1)!} \cdot \frac{n!}{z^n}\right| = \frac{1}{n+1} \cdot |z| \to 0$ für $n \to \infty$\nl
+Nach Korollar \ref{7.14} folgt die Behauptung.
+
+\newpage
+
+\section{Definition: Exponentialfunktion}\label{8.9}
+Die Funktion $exp: \C \to \C, z \mto exp(z)$ heißt \underline{Exponentialfunktion}.
+
+\subsection*{Beachte}
+$x \in \R \Ra exp(x)=\sum_{n=0}^\infty \frac{x^n}{n!} \in \R$
+
+\subsection*{Spezielle Werte}
+\items{
+\item $exp(0)=1$
+\item \fbox{$exp(1)=\sum_{n=0}^\infty \frac{1}{n!} =: e \approx 2,718$} \underline{Eulersche Zahl}
+}
+
+\section{Satz: Funktionalgleichung}\label{8.10}
+$\forall z,w \in \C:$ \fbox{$exp(z+w) = exp(z) \cdot exp(w)$}
+
+\subsection*{Beweis}
+Exponentialreihe ist absolut konvergent $\Ra$ Cauchy-Produkt bildbar:\\
+$exp(z) \cdot exp(w) = \left(\sum_{j=0}^\infty \frac{z^j}{j!}\right) \cdot \left(\sum_{k=0}^\infty \frac{w^k}{k!}\right) = \sum_{n=0}^\infty c_n$\\
+mit $c_n = \sum_{j=0}^n \frac{z^j}{j!} \cdot \frac{w^{n-j}}{(n-j)!} = \frac{1}{n!} \cdot \sum_{j=0}^n \binom{n}{j} z^j w^{n-j} = \frac{1}{n!} (z+w)^n$ (Binomische Formel)\\
+$\Ra exp(z) \cdot exp(w) = \sum_{n=0}^\infty \frac{1}{n!} \cdot (z+w)^n = exp(z+w)$ \qed
+
+\newpage
+
+\section{Folgerungen}\label{8.11}
+\en{
+\item $exp(z) \neq 0 \forall z \in \C$ und $exp(-z) = \frac{1}{exp(z)}$\\
+Denn: $1=exp(0) = exp(z+(-z)) \underset{\text{\ref{8.10}}}{=} exp(z) \cdot exp(-z)$ \ok
+\item \fbox{$x \in \R \Ra exp(x) > 0$}\\
+Denn: Für $x \ge 0$: $exp(x) = 1 + \sum_{n=1}^\infty \underbrace{\frac{x^n}{n!}}_{\ge0} \ge 1$\\
+Für $x < 0$: $exp(x) \underset{(1)}{=} \frac{1}{exp(-x)} > 0$ \ok
+\item $z \in \C, n \in \Z \Ra exp(nz) = (exp(z))^n$\\
+Insbes. (mit $z=1$): \fbox{$exp(n) = e^n$} $\forall n \in \Z$\\
+Denn: Für $n \in \N_0$: Induktion nach $n$\\
+$n=0$: $(exp(z))^0 = 1 = exp(0 \cdot z)$\\
+$n \to n+1$: $exp((n+1)z) = exp(nz+z) \underset{\text{\ref{8.10}}}{=} exp(nz) \cdot exp(z) \iv (exp(z))^{n+1}$ \ok\\
+Für $n < 0$: $exp(nz) \underset{\text{(1)}}{=} \frac{1}{exp(-nz)} \underset{-n > 0}{=} \frac{1}{(exp(z))^{-n}} = (exp(z))^n$ \qed
+\item $p \in \Z, q \in \N \Ra exp\left(\frac{p}{q}\right) = \sqrt[q]{e^p} =: e^{p/q}$\\
+Denn: $\left(exp\left(\frac{p}{q}\right)\right)^q \underset{\text{(3)}}{=} exp\left(q \cdot \frac{p}{q}\right) = exp(p) = e^p \underset{exp\left(\frac{p}{q}\right) >0}{\Ra} exp\left(\frac{p}{q}\right) = \sqrt[q]{e^p}$ \qed
+}
+
+\subsection*{Schreibweise (motiviert durch (4))}
+\fbox{$e^z := exp(z)$} für $z \in \C$\\
+Damit: $e^0 = 1$, $e^{z+w} = e^z \cdot e^w$ (FG \ref{8.10}), $e^{-z} = \frac{1}{e^z}$

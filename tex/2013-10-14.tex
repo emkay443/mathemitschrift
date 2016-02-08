@@ -1,0 +1,175 @@
+% Kopfzeile beim Kapitelanfang:
+\fancypagestyle{plain}{
+%Kopfzeile links bzw. innen
+\fancyhead[L]{\Large Vorlesung 1 (14.10.2013)}
+%Kopfzeile rechts bzw. außen
+\fancyhead[R]{}}
+%Kopfzeile links bzw. innen
+\fancyhead[L]{\Large Vorlesung 1 (14.10.2013)}
+%Kopfzeile rechts bzw. außen
+\fancyhead[R]{}
+% **************************************************
+\chapter{Logik und Mengen}\label{P1}
+
+\phantomsection
+\addcontentsline{toc}{section}{Aussagen}
+\section*{Aussagen}\label{Aussagen}
+Eine math. \underline{Aussage} ist ein sprachlicher Ausdruck, dem genau ein Wahrheitswert $wahr (w)$ oder $falsch (w)$ zugeordnet werden kann. 
+
+\subsection*{Beispiel}
+\items{
+\item $2\cdot3=6$ ist wahr
+\item $1+2=4$ ist falsch
+\item ``Tom ist ein guter Koch'' ist keine Aussage, da nicht eindeutig wahr oder falsch
+}
+
+\section{Verknüpfung von Aussagen}\label{1.1}
+Die Verknüpfung von Aussagen liefert neue Aussagen.\\
+Seien $P$ und $Q$ zwei Aussagen.
+\en{
+\item \underline{Konjunktion}: $P \wedge Q$ (sprich: $P$ und $Q$)\\
+Ist wahr genau dann, wenn $P$ und $Q$ wahr sind.
+\item \underline{Disjunktion}: $P \vee Q$ (sprich: $P$ oder $Q$)\\
+Ist wahr genau dann, wenn $P$ oder $Q$ wahr ist (oder beide).
+\item \underline{Negation}: $\neg P$ (sprich: nicht $P$)\\
+Ist wahr genau dann, wenn $P$ falsch ist.
+\item \underline{Implikation}: $P \Rightarrow Q$ (sprich: $P$ impliziert $Q$, aus $P$ folgt $Q$)\\
+Ist falsch genau dann, wenn $P$ wahr, aber $Q$ falsch ist.\\
+Ist immer wahr, wenn $P$ falsch ist.
+\item \underline{Äquivalenz}: $P \Leftrightarrow Q := (P \Rightarrow Q) \wedge (Q \Rightarrow P)$\\
+Ist wahr genau dann, wenn $P$ und $Q$ denselben Wahrheitswert haben.\\
+Beispiel: Für ganze Zahlen $n$ gilt: $n^2 \le 4 \Leftrightarrow -2 \le n \le 2$
+}
+
+\subsection*{Wahrheitstafel}
+\begin{tabular}{c|c|c|c|c|c|c}
+$P$ & $Q$ & $P \wedge Q$ & $P \vee Q$ & $\neg P$ & $P \Rightarrow Q$ & $P \Leftrightarrow Q$ \\ 
+\hline 
+w & w & w & w & f & w & w \\
+w & f & f & w & f & f & f \\
+f & w & f & w & w & w & f \\
+f & f & f & f & w & w & w
+\end{tabular} 
+
+\newpage
+
+\section{Bezeichnung: Semantische Äquivalenz}\label{1.2}
+Zwei Aussagen $P$ und $Q$ mit selber Wahrheitstafel heißen \underline{semantisch äquivalent}: $P \equiv Q$
+
+\subsection*{Beispiele}
+\en{
+\item $\neg (\neg P) \equiv P$ denn:\\
+\begin{tabular}{c|c|c}
+$P$ & $\neg P$ & $\neg (\neg P)$ \\ 
+\hline 
+w & f & w \\
+f & w & f
+\end{tabular} 
+\item \underline{Regeln von de Morgan}:\\
+$\neg (P \wedge Q) = \neg P \vee \neg Q$\\
+$\neg (P \vee Q) = \neg P \wedge \neg Q$\\
+Erkenntnis: $\neg$ bindet stärker als $\wedge$ und $\vee$.
+\item \underline{Distributivgesetze}:\\
+$P \wedge (Q \vee R) = (P \wedge Q) \vee (P \wedge R)$\\
+$P \vee (Q \wedge R) = (P \vee Q) \wedge (P \vee R)$
+}
+
+\newpage
+
+\phantomsection
+\addcontentsline{toc}{section}{Mengen}
+\section*{Mengen}\label{Mengen}
+Definition nach \href{https://de.wikipedia.org/wiki/Georg_Cantor}{G. Cantor}: \emph{``Eine Menge ist eine Zusammenfassung bestimmter, wohlunterschiedener Objekte unseres Denkens zu einem Ganzen. Diese Objekte heißen Elemente der Menge.''}\nl
+Diese Definition ist \emph{vage}!\\
+Pragmatischer Standpunkt: Eine Menge ist gebildet, wenn feststeht, welche Elemente ihr zugehörig sind.
+
+\subsection*{Schreibweisen}
+\items{
+\item $x \in A$ falls $x$ Element der Menge $A$ ist
+\item $x \notin A$ falls $x$ kein Element der Menge $A$ ist
+\item $A \subseteq B$ (sprich: $A$ ist Teilmenge von oder gleich $B$) falls jedes Element aus $A$ auch in $B$ vorkommt
+\item $B \supseteq A$ (sprich: $B$ ist Obermenge von oder gleich $A$)
+\item $A = B$ falls $A \subseteq B$ und $B \subseteq A$
+\item $\emptyset$ ist die leere Menge
+\item $A \subset B$ (auch: $A \subsetneq B$) heißt, $A$ ist eine Teilmenge von, aber nicht gleich $B$
+}
+
+\subsection*{Beschreibung von Mengen}
+\en{
+\item \underline{Durch Aufzählung der Elemente, z.B.}:\\
+$A=\{rot,blau\}$\\
+$B=\{1,\{1,2\},\{1,2,\{1,2\}\}\}$\\
+$\N=\{1,2,3,\hdots\}$ Menge der natürlichen Zahlen\\
+$\N_0=\{0,1,2,3,\hdots\}$ Menge der natürlichen Zahlen inklusive der Null\\
+$\Z=\{0,\pm 1,\pm 2,\hdots\}$ Menge der ganzen Zahlen
+\item \underline{Durch eine charakterisierende Eigenschaft, z.B.}:\\
+$A=\{n \in \Z : n \text{ ist gerade}\}$\\
+$B=\{n \in \Z : \text{es gibt } k \in \Z \text{ mit } n=2k\}$\\
+$P=\{p \in \N : p \text{ ist Primzahl}\}$
+}
+
+\newpage
+
+\section{Definition: Teiler}\label{1.3}
+Seien $m,n \in \Z$.\\
+$m$ heißt \underline{Teiler von $n$} (kurz: $m \mid n$), falls es ein $k \in \Z$ gibt mit $n=k \cdot m$.\\
+Sonst ist $m$ kein Teiler von $n$, also $m \nmid n$.
+
+\subsection*{Beispiele}
+\items{
+\item $-3 \mid 6$, da es ein $k \in \Z$ gibt mit $6=k \cdot -3$, nämlich $k=-2$
+\item $5 \nmid 6$, da es kein $k \in \Z$ gibt mit $6=k \cdot 5$
+\item $p \in \N$ heißt \underline{Primzahl}, falls $p \neq 1$ und $p$ keine Teiler in $\N$ hat außer $1$ und $p$
+}
+
+\subsection*{Weitere Mengen von Zahlen}\label{Rationale Zahlen}
+$\Q = \left \{ \frac{m}{n} : m,n \in \Z : n \neq 0 \right \}$ Menge der rationalen Zahlen\\
+Rechnen in $\Q$ ist aus der Schule bekannt.\\
+Wichtig:$\frac{a}{b} = \frac{c}{d} \Leftrightarrow ad = bc$\\
+$\R$ Menge der reellen Zahlen
+
+\subsection*{Inklusionen}
+$\N \subset \N_0 \subset \Q \subset \R$
+
+\section{Mengenoperationen}\label{1.4}
+Seien $A$ und $B$ zwei Mengen.
+\items{
+\item $A \cup B := \{x : x \in A \vee x \in B \}$ Vereinigung von $A$ und $B$
+\item $A \cap B := \{x : x \in A \wedge x \in B \}$ Durchschnitt von $A$ und $B$
+\item $A \setminus B := \{x : x \in A \wedge x \notin B\}$ Komplement von $A$ und $B$
+}
+
+\section{Regeln von de Morgan}\label{1.5}
+\en{
+\item $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
+\item $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
+}
+
+\subsection*{Beweis der ersten Regel von de Morgan}
+$x \in A \cap (B \cup C) \Leftrightarrow (x \in A) \wedge (x \in (B \cup C)) \Leftrightarrow (x \in A) \wedge ((x \in B) \vee (x \in C))$\\
+$\Leftrightarrow ((x \in A) \wedge (x \in B)) \vee ((x \in A) \wedge (x \in C)) \Leftrightarrow (x \in A \cap B) \vee (x \in A \cap C) \Leftrightarrow x \in (A \cap B) \cup (A \cap C)$ \\
+\qed
+
+\newpage
+
+\section{Kartesisches Produkt von Mengen}\label{1.6}
+Seien $A$ und $B$ zwei Mengen.\\
+$A \times B := \{(a,b) : a \in A , b \in B \}$ Menge aller geordneten Paare $(a,b)$\\
+Im Gegensatz zu $\{a,b\}=\{b,a\}$ kommt es beim kartesischen Produkt auf die Reihenfolge an!\\
+Insbesondere: $(a,b)=(a',b') \Leftrightarrow a=a' \wedge b = b'$
+
+\subsection*{Beispiele}
+$A=\{1,2,3\}$\\
+$B=\{\ast,\circ\}$\\
+$A \times B = \{(1,\ast),(1,\circ),(2,\ast),(2,\circ),(3,\ast),(3,\circ)\}$
+
+\section{Bezeichnung: Potenzmengen, Mächtigkeit}\label{1.7}
+Sei $A$ eine Menge.
+\en{
+\item $\Pow(A) := \{B : B \subseteq A \}$ \underline{Potenzmenge von $A$}\\
+Beispiel: $A=\{0,1\} \Rightarrow \Pow(A)=\{\emptyset,\{0\},\{1\},\{0,1\}\}$
+\item Ist $A$ endlich, so kennzeichnet $|A|$ die \underline{Mächtigkeit}, die \underline{Anzahl der Elemente} von $A$.\\
+Falls $A$ nicht endlich ist, so ist $|A|=\infty$
+}
+Es gilt: $|A| = n \in \N_0 \Rightarrow |\Pow(A)|=2^n$ (mit Konvention $2^0=1$)\\
+Beachte: $A=\emptyset \Rightarrow \Pow(A)=\{\emptyset\}$
